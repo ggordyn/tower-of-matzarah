@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bclw3p5du60nl"]
+
+[ext_resource type="Script" uid="uid://cvg7vjwnwu2qv" path="res://player/player.gd" id="1_oul6g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1dw6"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oul6g"]
+albedo_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rkbax"]
+size = Vector3(0.5, 0.15, 0.2)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sync"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" unique_id=97317820]
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1723245436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_rkbax")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1923407402]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_g1dw6")
+
+[node name="Visor" type="MeshInstance3D" parent="Body" unique_id=1961362565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -0.33)
+material_override = SubResource("StandardMaterial3D_oul6g")
+mesh = SubResource("BoxMesh_rkbax")
+
+[node name="Head" type="Node3D" parent="." unique_id=609023482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1768648600]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1042659232]
+replication_config = SubResource("SceneReplicationConfig_sync")

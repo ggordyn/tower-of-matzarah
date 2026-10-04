@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b12pd7cmryywm"]
+
+[ext_resource type="Script" uid="uid://f5s5ljjfi3kb" path="res://levels/test_room.gd" id="1_ctiq7"]
+
+[sub_resource type="Environment" id="Environment_nlfnm"]
+background_mode = 1
+background_color = Color(0.078431375, 0.078431375, 0.10980392, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.41568628, 0.41568628, 0.5019608, 1)
+ambient_light_energy = 0.6
+
+[node name="TestRoom" type="Node3D" unique_id=1738390798]
+script = ExtResource("1_ctiq7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1848697639]
+environment = SubResource("Environment_nlfnm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1185979541]
+transform = Transform3D(0.81915206, -0.46984634, 0.32898995, 0, 0.57357645, 0.81915206, -0.57357645, -0.6710101, 0.46984634, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Geometry" type="Node3D" parent="." unique_id=1770057905]
+
+[node name="Floor" type="CSGBox3D" parent="Geometry" unique_id=2119662045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="WallNorth" type="CSGBox3D" parent="Geometry" unique_id=1603127719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -15.5)
+use_collision = true
+size = Vector3(30, 3, 1)
+
+[node name="WallSouth" type="CSGBox3D" parent="Geometry" unique_id=609452851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15.5)
+use_collision = true
+size = Vector3(30, 3, 1)
+
+[node name="WallEast" type="CSGBox3D" parent="Geometry" unique_id=1005069354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 1.5, 0)
+use_collision = true
+size = Vector3(1, 3, 32)
+
+[node name="WallWest" type="CSGBox3D" parent="Geometry" unique_id=675486284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 1.5, 0)
+use_collision = true
+size = Vector3(1, 3, 32)
+
+[node name="Block1" type="CSGBox3D" parent="Geometry" unique_id=968314005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -6)
+use_collision = true
+size = Vector3(2, 2, 2)
+
+[node name="Block2" type="CSGBox3D" parent="Geometry" unique_id=121310463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 4)
+use_collision = true
+size = Vector3(4, 1, 1.5)
+
+[node name="Pillar" type="CSGBox3D" parent="Geometry" unique_id=1624815758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 7)
+use_collision = true
+size = Vector3(1, 3, 1)
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=1059761217]
+
+[node name="Spawn1" type="Marker3D" parent="SpawnPoints" unique_id=997718530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.1, 0)
+
+[node name="Spawn2" type="Marker3D" parent="SpawnPoints" unique_id=876080016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12, 0.1, 2.12)
+
+[node name="Spawn3" type="Marker3D" parent="SpawnPoints" unique_id=59410644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 3)
+
+[node name="Spawn4" type="Marker3D" parent="SpawnPoints" unique_id=96633792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.12, 0.1, 2.12)
+
+[node name="Spawn5" type="Marker3D" parent="SpawnPoints" unique_id=1328993916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.1, 0)
+
+[node name="Spawn6" type="Marker3D" parent="SpawnPoints" unique_id=1514320133]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.12, 0.1, -2.12)
+
+[node name="Spawn7" type="Marker3D" parent="SpawnPoints" unique_id=1721350289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -3)
+
+[node name="Spawn8" type="Marker3D" parent="SpawnPoints" unique_id=915576708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12, 0.1, -2.12)
+
+[node name="Players" type="Node3D" parent="." unique_id=1668828398]
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1927203922]
+spawn_path = NodePath("../Players")
